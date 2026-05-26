@@ -47,8 +47,8 @@ body {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: var(--black);
-  color: #fff;
+   background: var(--bg);
+  color: var(--black);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -56,16 +56,16 @@ body {
   gap: 1rem;
 }
 
-.nav-year { font-size: 0.75rem; opacity: 0.5; letter-spacing: 0.05em; }
+.nav-year { font-size: 0.75rem;  letter-spacing: 0.05em; }
 
 .nav-links {
   display: flex;
-  gap: 2.5rem;
+  gap: 1rem;
   list-style: none;
 }
 
 .nav-links a {
-  color: #fff;
+  color: var(--black);
   text-decoration: none;
   font-size: 0.78rem;
   font-weight: 600;
@@ -76,7 +76,7 @@ body {
 .nav-links a:hover { color: var(--orange); }
 
 .nav-email {
-  color: var(--orange);
+  color: var(--black);
   font-size: 0.78rem;
   text-decoration: none;
   letter-spacing: 0.05em;
