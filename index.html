@@ -28,7 +28,9 @@
     <h1 class="hero-title">Designer</h1>
     <p class="hero-name"><em>Arshman Shahid</em></p>
 
-    <div class="marquee-wrap">
+   
+  </section>
+ <div class="marquee-wrap">
       <div class="marquee-track">
         <span>Graphic Designer •&nbsp;</span><span>Arshman Shahid •&nbsp;</span>
         <span>Graphic Designer •&nbsp;</span><span>Arshman Shahid •&nbsp;</span>
@@ -37,13 +39,11 @@
         <span>Graphic Designer •&nbsp;</span><span>Arshman Shahid •&nbsp;</span>
       </div>
     </div>
-  </section>
-
   <!-- ── ABOUT ── -->
   <section class="about" id="about">
     <div class="about-inner">
       <div class="about-left">
-        <h2 class="section-hello">HELLO!</h2>
+        <h2 class="section-hello">HELLO</h2>
         <p>
           My name is Arshman Shahid and I am a professional Graphic Designer with over 4 years of
           hands-on experience delivering high-impact visual solutions. Balancing creative storytelling
@@ -148,16 +148,25 @@
     </div>
   </section>
 
-  <!-- ── CLIENTS ── -->
   <section class="clients-section">
-    <h2 class="section-title">MY CLIENTS</h2>
+  <h2 class="section-title">MY CLIENTS</h2>
+  
+  <div class="clients-slider-container">
     <div class="clients-row">
       <div class="client-name">NAYVO</div>
-      <div class="client-sub">(SINCE 2024)</div>
-      <div class="client-name">Zylex</div>
       <div class="client-name styled-italic">Soulstitch</div>
+      <div class="client-name">Zylex</div>
+      <div class="client-name">Vortex</div>
+      <div class="client-name styled-italic">Nexus</div>
+      <div class="client-name">Aura</div>
     </div>
-  </section>
+  </div>
+  
+  <div class="slider-controls">
+    <button class="slidingleft"> &lt; </button>
+    <button class="slidingeright"> &gt; </button>
+  </div>
+</section>
 
   <!-- ── WORK ── -->
   <section class="work-section" id="work">
@@ -297,6 +306,37 @@
         if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
       });
     });
+
+    const row = document.querySelector('.clients-row');
+  const nextBtn = document.querySelector('.slidingeright');
+  const prevBtn = document.querySelector('.slidingleft');
+
+  let currentTranslateX = 0;
+
+  nextBtn.addEventListener('click', () => {
+    // Check maximum amount the row can slide left
+    const maxScroll = row.scrollWidth - row.parentElement.clientWidth;
+    
+    // Slide by 300px chunks, but don't slide past the end
+    if (Math.abs(currentTranslateX) < maxScroll) {
+      currentTranslateX -= 300;
+      if (Math.abs(currentTranslateX) > maxScroll) {
+        currentTranslateX = -maxScroll; // Snap to the exact end
+      }
+      row.style.transform = `translateX(${currentTranslateX}px)`;
+    }
+  });
+
+  prevBtn.addEventListener('click', () => {
+    // Slide back right, stopping at 0
+    if (currentTranslateX < 0) {
+      currentTranslateX += 300;
+      if (currentTranslateX > 0) {
+        currentTranslateX = 0; // Snap back to start
+      }
+      row.style.transform = `translateX(${currentTranslateX}px)`;
+    }
+  });
   </script>
 </body>
 </html>

@@ -108,7 +108,7 @@ body {
 
 .hero-title {
   font-family: 'Haettenschweiler', 'Arial Narrow', Impact, sans-serif;
-  font-size: clamp(6rem, 18vw, 14rem);
+  font-size: clamp(6rem, 15vw, 14rem);
   font-weight: 900;
   line-height: 0.88;
   letter-spacing: -0.01em;
@@ -191,6 +191,7 @@ body {
 }
 
 .about-right {
+  margin-top: 5rem;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -211,7 +212,7 @@ body {
   font-family: 'Haettenschweiler', 'Arial Narrow', Impact, sans-serif;
   font-size: 3rem;
   font-weight: 900;
-  color: var(--orange);
+  color: var(--black);
   line-height: 1;
 }
 
@@ -281,45 +282,68 @@ body {
   font-size: 0.92rem;
   max-width: 780px;
 }
-
-/* ── CLIENTS ── */
 .clients-section {
-  background: var(--black);
+  background: var(--off-white);
   padding: 5rem 6%;
   text-align: center;
 }
 
-.clients-section .section-title { color: #fff; }
+.clients-section .section-title { 
+  color: var(--black); 
+  margin-bottom: 2rem;
+}
 
+/* 1. The "window" that clips the overflow */
+.clients-slider-container {
+  overflow: hidden;
+  width: 100%;
+  max-width: 1000px; /* Adjust based on your layout design */
+  margin: 0 auto 2rem auto;
+}
+
+/* 2. Modified row to allow smooth sliding */
 .clients-row {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start; /* Changed from center to allow sequential sliding */
   align-items: center;
-  gap: 3.5rem;
-  flex-wrap: wrap;
+  gap: 5rem;                 /* Increased gap for distinct item spacing */
+  white-space: nowrap;
+  transition: transform 0.4s ease-in-out; /* Makes the slide animation smooth */
+  will-change: transform;
 }
 
 .client-name {
   font-family: 'Haettenschweiler', 'Arial Narrow', Impact, sans-serif;
   font-size: clamp(2rem, 6vw, 4rem);
   font-weight: 900;
-  color: #fff;
+  color: var(--dark-grey);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   transition: color 0.2s;
+  cursor: pointer;
+  flex-shrink: 0; /* Prevents text from squishing */
 }
 
 .client-name.styled-italic { font-style: italic; }
-
 .client-name:hover { color: var(--orange); }
 
-.client-sub {
-  font-size: 0.75rem;
-  color: var(--mid-grey);
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
+/* Control Button Styling */
+.slider-controls button {
+  background: transparent;
+  border: 2px solid var(--mid-grey);
+  color: var(--black);
+  padding: 0.5rem 1rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  margin: 0 0.5rem;
+  transition: all 0.2s;
+  border-radius: 4px;
 }
 
+.slider-controls button:hover {
+  border-color: var(--orange);
+  color: var(--orange);
+}
 /* ── WORK ── */
 .work-section {
   background: var(--bg);
@@ -454,8 +478,9 @@ body {
 }
 
 .skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
   gap: 1.2rem;
   max-width: 1100px;
   margin: 0 auto;
